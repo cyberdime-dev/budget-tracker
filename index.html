@@ -22,6 +22,19 @@
     <form id="transaction-form">
       <input type="text" id="description" placeholder="Description" required />
       <input type="number" id="amount" placeholder="Amount (+/-)" required />
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="food">🍔 Food & Dining</option>
+        <option value="transport">🚗 Transport</option>
+        <option value="entertainment">🎬 Entertainment</option>
+        <option value="shopping">🛍️ Shopping</option>
+        <option value="bills">💡 Bills & Utilities</option>
+        <option value="healthcare">🏥 Healthcare</option>
+        <option value="education">📚 Education</option>
+        <option value="travel">✈️ Travel</option>
+        <option value="income">💰 Income</option>
+        <option value="other">📦 Other</option>
+      </select>
       <button type="submit">Add Transaction</button>
     </form>
 

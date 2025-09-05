@@ -4,7 +4,7 @@
 
 ### 1. Add Transaction Categories
 - [x] Implement dark styles (bright green primary color and dark grey secondary)
-- [ ] Implement category dropdown/selection in form
+- [x] Implement category dropdown/selection in form
 - [ ] Add category icons (Food 🍔, Transport 🚗, Entertainment 🎬, etc.)
 - [ ] Color-code transactions by category
 - [ ] Add category filter functionality
