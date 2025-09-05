@@ -116,6 +116,16 @@ select option {
   padding: 0.5rem;
 }
 
+.category-container {
+  width: 100%;
+  position: relative;
+}
+
+.category-dropdown {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
 button {
   padding: 0.75rem 1.5rem;
   background: var(--primary-green);
@@ -243,6 +253,10 @@ button:active {
   }
   
   input, select, button {
+    width: 100%;
+  }
+  
+  .category-container {
     width: 100%;
   }
   

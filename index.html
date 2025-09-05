@@ -22,19 +22,34 @@
     <form id="transaction-form">
       <input type="text" id="description" placeholder="Description" required />
       <input type="number" id="amount" placeholder="Amount (+/-)" required />
-      <select id="category" required>
-        <option value="">Select Category</option>
-        <option value="food">🍔 Food & Dining</option>
-        <option value="transport">🚗 Transport</option>
-        <option value="entertainment">🎬 Entertainment</option>
-        <option value="shopping">🛍️ Shopping</option>
-        <option value="bills">💡 Bills & Utilities</option>
-        <option value="healthcare">🏥 Healthcare</option>
-        <option value="education">📚 Education</option>
-        <option value="travel">✈️ Travel</option>
-        <option value="income">💰 Income</option>
-        <option value="other">📦 Other</option>
-      </select>
+      
+      <div class="category-container">
+        <select id="income-category" class="category-dropdown" style="display: none;">
+          <option value="">Select Income Category</option>
+          <option value="salary">💰 Salary</option>
+          <option value="freelance">💼 Freelance</option>
+          <option value="investment">📈 Investment</option>
+          <option value="business">🏢 Business</option>
+          <option value="gift">🎁 Gift</option>
+          <option value="refund">↩️ Refund</option>
+          <option value="other-income">📦 Other Income</option>
+        </select>
+        
+        <select id="expense-category" class="category-dropdown" style="display: none;">
+          <option value="">Select Expense Category</option>
+          <option value="food">🍔 Food & Dining</option>
+          <option value="transport">🚗 Transport</option>
+          <option value="entertainment">🎬 Entertainment</option>
+          <option value="shopping">🛍️ Shopping</option>
+          <option value="bills">💡 Bills & Utilities</option>
+          <option value="healthcare">🏥 Healthcare</option>
+          <option value="education">📚 Education</option>
+          <option value="travel">✈️ Travel</option>
+          <option value="housing">🏠 Housing</option>
+          <option value="other-expense">📦 Other Expense</option>
+        </select>
+      </div>
+      
       <button type="submit">Add Transaction</button>
     </form>
 

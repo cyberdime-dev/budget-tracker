@@ -7,10 +7,21 @@ const expensesEl = document.getElementById('expenses');
 const form = document.getElementById('transaction-form');
 const description = document.getElementById('description');
 const amount = document.getElementById('amount');
-const category = document.getElementById('category');
+const incomeCategory = document.getElementById('income-category');
+const expenseCategory = document.getElementById('expense-category');
 
 // Category display mapping
 const categoryMap = {
+  // Income categories
+  'salary': '💰 Salary',
+  'freelance': '💼 Freelance',
+  'investment': '📈 Investment',
+  'business': '🏢 Business',
+  'gift': '🎁 Gift',
+  'refund': '↩️ Refund',
+  'other-income': '📦 Other Income',
+  
+  // Expense categories
   'food': '🍔 Food',
   'transport': '🚗 Transport',
   'entertainment': '🎬 Entertainment',
@@ -19,13 +30,39 @@ const categoryMap = {
   'healthcare': '🏥 Healthcare',
   'education': '📚 Education',
   'travel': '✈️ Travel',
-  'income': '💰 Income',
-  'other': '📦 Other'
+  'housing': '🏠 Housing',
+  'other-expense': '📦 Other Expense'
 };
 
 function getCategoryDisplay(categoryValue) {
   return categoryMap[categoryValue] || '📦 Other';
 }
+
+// Function to toggle category dropdowns based on amount
+function toggleCategoryDropdowns() {
+  const amountValue = parseFloat(amount.value);
+  
+  if (amountValue > 0) {
+    // Show income dropdown, hide expense dropdown
+    incomeCategory.style.display = 'block';
+    expenseCategory.style.display = 'none';
+    expenseCategory.value = ''; // Clear expense selection
+  } else if (amountValue < 0) {
+    // Show expense dropdown, hide income dropdown
+    expenseCategory.style.display = 'block';
+    incomeCategory.style.display = 'none';
+    incomeCategory.value = ''; // Clear income selection
+  } else {
+    // Hide both dropdowns if amount is 0 or empty
+    incomeCategory.style.display = 'none';
+    expenseCategory.style.display = 'none';
+    incomeCategory.value = '';
+    expenseCategory.value = '';
+  }
+}
+
+// Add event listener to amount input
+amount.addEventListener('input', toggleCategoryDropdowns);
 
 function updateDOM() {
   transactionList.innerHTML = '';
@@ -69,17 +106,30 @@ function updateSummary() {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  if (description.value.trim() === '' || amount.value.trim() === '' || category.value === '') return;
+  const amountValue = parseFloat(amount.value);
+  let selectedCategory = '';
+  
+  // Determine which category is selected based on amount
+  if (amountValue > 0) {
+    selectedCategory = incomeCategory.value;
+  } else if (amountValue < 0) {
+    selectedCategory = expenseCategory.value;
+  }
+
+  if (description.value.trim() === '' || amount.value.trim() === '' || selectedCategory === '') return;
 
   transactions.push({
     description: description.value,
     amount: +amount.value,
-    category: category.value
+    category: selectedCategory
   });
 
   description.value = '';
   amount.value = '';
-  category.value = '';
+  incomeCategory.value = '';
+  expenseCategory.value = '';
+  incomeCategory.style.display = 'none';
+  expenseCategory.style.display = 'none';
   updateDOM();
 });
 

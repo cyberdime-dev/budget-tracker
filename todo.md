@@ -5,8 +5,8 @@
 ### 1. Add Transaction Categories
 - [x] Implement dark styles (bright green primary color and dark grey secondary)
 - [x] Implement category dropdown/selection in form
-- [ ] Add category icons (Food 🍔, Transport 🚗, Entertainment 🎬, etc.)
-- [ ] Color-code transactions by category
+- [X] Add category icons (Food 🍔, Transport 🚗, Entertainment 🎬, etc.)
+- [x] Split dropdown into Income and Costs
 - [ ] Add category filter functionality
 
 ### 2. Add Date/Time Stamps
