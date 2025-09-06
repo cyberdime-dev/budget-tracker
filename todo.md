@@ -10,7 +10,7 @@
 - [x] Remove background and border from Income and Expenses output.
 
 ### 2. Add Date/Time Stamps
-- [ ] Add date field to transaction form
+- [x] Add date field to transaction form
 - [ ] Store timestamp with each transaction
 - [ ] Display date in transaction list
 - [ ] Add date-based sorting and filtering

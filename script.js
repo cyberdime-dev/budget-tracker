@@ -7,6 +7,7 @@ const expensesEl = document.getElementById('expenses');
 const form = document.getElementById('transaction-form');
 const description = document.getElementById('description');
 const amount = document.getElementById('amount');
+const date = document.getElementById('date');
 const incomeCategory = document.getElementById('income-category');
 const expenseCategory = document.getElementById('expense-category');
 
@@ -36,6 +37,15 @@ const categoryMap = {
 
 function getCategoryDisplay(categoryValue) {
   return categoryMap[categoryValue] || '📦 Other';
+}
+
+// Function to get current date in YYYY-MM-DD format
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 // Function to toggle category dropdowns based on amount
@@ -116,16 +126,18 @@ form.addEventListener('submit', (e) => {
     selectedCategory = expenseCategory.value;
   }
 
-  if (description.value.trim() === '' || amount.value.trim() === '' || selectedCategory === '') return;
+  if (description.value.trim() === '' || amount.value.trim() === '' || date.value === '' || selectedCategory === '') return;
 
   transactions.push({
     description: description.value,
     amount: +amount.value,
+    date: date.value,
     category: selectedCategory
   });
 
   description.value = '';
   amount.value = '';
+  date.value = getCurrentDate();
   incomeCategory.value = '';
   expenseCategory.value = '';
   incomeCategory.style.display = 'none';
@@ -137,5 +149,8 @@ function removeTransaction(index) {
   transactions.splice(index, 1);
   updateDOM();
 }
+
+// Initialize date field with today's date
+date.value = getCurrentDate();
 
 updateDOM();

@@ -102,6 +102,15 @@ input::placeholder {
   color: var(--text-secondary);
 }
 
+input[type="date"] {
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 select {
   cursor: pointer;
   min-width: 150px;
