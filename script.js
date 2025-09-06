@@ -181,32 +181,45 @@ function updateDOM() {
   const filteredTransactions = filterTransactions(transactions, filterBy);
   const sortedTransactions = sortTransactions(filteredTransactions, sortBy);
 
-  sortedTransactions.forEach((trans, index) => {
-    // Find the original index for the remove function
-    const originalIndex = transactions.findIndex(t => t === trans);
-    const sign = trans.amount < 0 ? '-' : '+';
-    const li = document.createElement('li');
-    li.classList.add(trans.amount < 0 ? 'expense' : 'income');
-    
-    // Get category display text with emoji
-    const categoryDisplay = getCategoryDisplay(trans.category);
-    const formattedDate = formatDateForDisplay(trans.date);
-    
-    li.innerHTML = `
-      <div class="transaction-info">
-        <div class="transaction-main">
-          <span class="category-badge">${categoryDisplay}</span>
-          <span class="description">${trans.description}</span>
-        </div>
-        <div class="transaction-details">
-          <div class="transaction-date">${formattedDate}</div>
-          <div class="transaction-amount">${sign}$${Math.abs(trans.amount).toFixed(2)}</div>
-        </div>
+  // Check if there are any transactions to display
+  if (sortedTransactions.length === 0) {
+    const emptyMessage = document.createElement('li');
+    emptyMessage.className = 'empty-message';
+    emptyMessage.innerHTML = `
+      <div class="empty-content">
+        <div class="empty-icon">📝</div>
+        <div class="empty-text">Transactions will show up here :D</div>
       </div>
-      <button onclick="removeTransaction(${originalIndex})">x</button>
     `;
-    transactionList.appendChild(li);
-  });
+    transactionList.appendChild(emptyMessage);
+  } else {
+    sortedTransactions.forEach((trans, index) => {
+      // Find the original index for the remove function
+      const originalIndex = transactions.findIndex(t => t === trans);
+      const sign = trans.amount < 0 ? '-' : '+';
+      const li = document.createElement('li');
+      li.classList.add(trans.amount < 0 ? 'expense' : 'income');
+      
+      // Get category display text with emoji
+      const categoryDisplay = getCategoryDisplay(trans.category);
+      const formattedDate = formatDateForDisplay(trans.date);
+      
+      li.innerHTML = `
+        <div class="transaction-info">
+          <div class="transaction-main">
+            <span class="category-badge">${categoryDisplay}</span>
+            <span class="description">${trans.description}</span>
+          </div>
+          <div class="transaction-details">
+            <div class="transaction-date">${formattedDate}</div>
+            <div class="transaction-amount">${sign}$${Math.abs(trans.amount).toFixed(2)}</div>
+          </div>
+        </div>
+        <button onclick="removeTransaction(${originalIndex})">x</button>
+      `;
+      transactionList.appendChild(li);
+    });
+  }
 
   updateSummary();
   localStorage.setItem('transactions', JSON.stringify(transactions));

@@ -194,6 +194,11 @@ form {
   background: var(--dark-bg);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-light);
+  align-items: flex-end;
+}
+
+form button {
+  margin-left: auto;
 }
 
 input, select {
@@ -364,6 +369,44 @@ button:active {
   transform: translateX(6px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   border-color: var(--border-color);
+}
+
+.empty-message {
+  background: var(--dark-bg) !important;
+  border: 2px dashed var(--border-color) !important;
+  border-left: 4px solid var(--primary-green) !important;
+  text-align: center;
+  padding: var(--spacing-lg) !important;
+  margin: var(--spacing-xs) 0 !important;
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.empty-message:hover {
+  background: var(--hover-bg) !important;
+  border-color: var(--primary-green) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  opacity: 0.7;
+  filter: grayscale(0.3);
+}
+
+.empty-text {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
 }
 
 .transactions li.income {
