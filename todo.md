@@ -7,7 +7,7 @@
 - [x] Implement category dropdown/selection in form
 - [X] Add category icons (Food 🍔, Transport 🚗, Entertainment 🎬, etc.)
 - [x] Split dropdown into Income and Costs
-- [ ] Add category filter functionality
+- [x] Remove background and border from Income and Expenses output.
 
 ### 2. Add Date/Time Stamps
 - [ ] Add date field to transaction form
