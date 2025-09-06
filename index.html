@@ -11,76 +11,84 @@
   <div class="container">
     <h1>💰 Budget Tracker</h1>
 
-    <div class="balance">
-      <h2>Balance: <span id="balance">$0.00</span></h2>
-    </div>
+    <div class="main-layout">
+      <!-- Left Column: Balance, Summary, Form -->
+      <div class="left-column">
+        <div class="balance">
+          <h2>Balance: <span id="balance">$0.00</span></h2>
+        </div>
 
-    <div class="summary">
-      <div>Income: <span id="income">+$0.00</span></div>
-      <div>Expenses: <span id="expenses">-$0.00</span></div>
-    </div>
+        <div class="summary">
+          <div>Income: <span id="income">+$0.00</span></div>
+          <div>Expenses: <span id="expenses">-$0.00</span></div>
+        </div>
 
-    <div class="controls">
-      <div class="sort-controls">
-        <label for="sort-select">Sort by:</label>
-        <select id="sort-select">
-          <option value="date-desc">Date (Newest First)</option>
-          <option value="date-asc">Date (Oldest First)</option>
-          <option value="amount-desc">Amount (Highest First)</option>
-          <option value="amount-asc">Amount (Lowest First)</option>
-          <option value="category">Category</option>
-        </select>
+        <form id="transaction-form">
+          <input type="text" id="description" placeholder="Description" required />
+          <input type="number" id="amount" placeholder="Amount (+/-)" required />
+          <input type="date" id="date" required />
+          
+          <div class="category-container">
+            <select id="income-category" class="category-dropdown" style="display: none;">
+              <option value="">Select Income Category</option>
+              <option value="salary">💰 Salary</option>
+              <option value="freelance">💼 Freelance</option>
+              <option value="investment">📈 Investment</option>
+              <option value="business">🏢 Business</option>
+              <option value="gift">🎁 Gift</option>
+              <option value="refund">↩️ Refund</option>
+              <option value="other-income">📦 Other Income</option>
+            </select>
+            
+            <select id="expense-category" class="category-dropdown" style="display: none;">
+              <option value="">Select Expense Category</option>
+              <option value="food">🍔 Food & Dining</option>
+              <option value="transport">🚗 Transport</option>
+              <option value="entertainment">🎬 Entertainment</option>
+              <option value="shopping">🛍️ Shopping</option>
+              <option value="bills">💡 Bills & Utilities</option>
+              <option value="healthcare">🏥 Healthcare</option>
+              <option value="education">📚 Education</option>
+              <option value="travel">✈️ Travel</option>
+              <option value="housing">🏠 Housing</option>
+              <option value="other-expense">📦 Other Expense</option>
+            </select>
+          </div>
+          
+          <button type="submit">Add Transaction</button>
+        </form>
       </div>
-      
-      <div class="filter-controls">
-        <label for="filter-select">Filter:</label>
-        <select id="filter-select">
-          <option value="all">All Transactions</option>
-          <option value="today">Today</option>
-          <option value="week">This Week</option>
-          <option value="month">This Month</option>
-          <option value="income">Income Only</option>
-          <option value="expenses">Expenses Only</option>
-        </select>
+
+      <!-- Right Column: Controls and Transactions -->
+      <div class="right-column">
+        <div class="controls">
+          <div class="sort-controls">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="date-desc">Date (Newest First)</option>
+              <option value="date-asc">Date (Oldest First)</option>
+              <option value="amount-desc">Amount (Highest First)</option>
+              <option value="amount-asc">Amount (Lowest First)</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+          
+          <div class="filter-controls">
+            <label for="filter-select">Filter:</label>
+            <select id="filter-select">
+              <option value="all">All Transactions</option>
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+              <option value="income">Income Only</option>
+              <option value="expenses">Expenses Only</option>
+            </select>
+          </div>
+        </div>
+
+        <ul id="transaction-list" class="transactions"></ul>
       </div>
     </div>
-
-    <form id="transaction-form">
-      <input type="text" id="description" placeholder="Description" required />
-      <input type="number" id="amount" placeholder="Amount (+/-)" required />
-      <input type="date" id="date" required />
-      
-      <div class="category-container">
-        <select id="income-category" class="category-dropdown" style="display: none;">
-          <option value="">Select Income Category</option>
-          <option value="salary">💰 Salary</option>
-          <option value="freelance">💼 Freelance</option>
-          <option value="investment">📈 Investment</option>
-          <option value="business">🏢 Business</option>
-          <option value="gift">🎁 Gift</option>
-          <option value="refund">↩️ Refund</option>
-          <option value="other-income">📦 Other Income</option>
-        </select>
-        
-        <select id="expense-category" class="category-dropdown" style="display: none;">
-          <option value="">Select Expense Category</option>
-          <option value="food">🍔 Food & Dining</option>
-          <option value="transport">🚗 Transport</option>
-          <option value="entertainment">🎬 Entertainment</option>
-          <option value="shopping">🛍️ Shopping</option>
-          <option value="bills">💡 Bills & Utilities</option>
-          <option value="healthcare">🏥 Healthcare</option>
-          <option value="education">📚 Education</option>
-          <option value="travel">✈️ Travel</option>
-          <option value="housing">🏠 Housing</option>
-          <option value="other-expense">📦 Other Expense</option>
-        </select>
-      </div>
-      
-      <button type="submit">Add Transaction</button>
-    </form>
-
-    <ul id="transaction-list" class="transactions"></ul>
   </div>
 
   <script src="script.js"></script>

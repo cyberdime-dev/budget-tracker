@@ -1,145 +1,229 @@
 /* Dark Theme Variables */
 :root {
   --primary-green: #00ff88;
+  --primary-green-hover: #00e677;
   --secondary-grey: #2a2a2a;
   --dark-bg: #1a1a1a;
   --card-bg: #2a2a2a;
   --text-primary: #ffffff;
   --text-secondary: #b0b0b0;
+  --text-muted: #888888;
   --border-color: #404040;
+  --border-light: #333333;
   --income-color: #00ff88;
   --expense-color: #ff4757;
   --hover-bg: #3a3a3a;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--dark-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #1e1e1e 100%);
   color: var(--text-primary);
   margin: 0;
-  padding: 2rem;
+  padding: var(--spacing-lg);
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
+  line-height: 1.6;
 }
 
 .container {
   background: var(--card-bg);
-  padding: 2rem;
-  max-width: 500px;
+  padding: var(--spacing-lg);
+  max-width: 1200px;
   width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.main-layout {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+.left-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.right-column {
+  flex: 1;
+  min-width: 0;
 }
 
 h1 {
   text-align: center;
   color: var(--primary-green);
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.balance {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--hover-bg) 100%);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
 }
 
 .balance h2 {
   color: var(--text-primary);
-  text-align: center;
-  margin-bottom: 1rem;
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .balance span {
   color: var(--primary-green);
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
 }
 
 .summary {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--dark-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
+.summary div {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.summary #income {
+  color: var(--income-color);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.summary #expenses {
+  color: var(--expense-color);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
 }
 
 .controls {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
   background: var(--dark-bg);
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
 }
 
 .sort-controls, .filter-controls {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
   flex: 1;
 }
 
 .controls label {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
 }
 
 .controls select {
   background: var(--card-bg);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .controls select:focus {
   outline: none;
   border-color: var(--primary-green);
   box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+  background: var(--hover-bg);
 }
 
-.summary div {
-  color: var(--text-secondary);
-  font-weight: 500;
+.controls select:hover {
+  border-color: var(--primary-green);
+  background: var(--hover-bg);
 }
 
-.summary #income {
-  color: var(--income-color);
-  font-weight: bold;
-}
-
-.summary #expenses {
-  color: var(--expense-color);
-  font-weight: bold;
-}
 
 form {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
+  padding: var(--spacing-md);
+  background: var(--dark-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
 }
 
 input, select {
   flex: 1;
-  padding: 0.75rem;
-  background: var(--dark-bg);
+  padding: var(--spacing-sm);
+  background: var(--card-bg);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 input:focus, select:focus {
   outline: none;
   border-color: var(--primary-green);
   box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+}
+
+input:hover, select:hover {
+  border-color: var(--primary-green);
+  background: var(--hover-bg);
 }
 
 input::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 input[type="date"] {
@@ -173,44 +257,50 @@ select option {
 }
 
 button {
-  padding: 0.75rem 1.5rem;
-  background: var(--primary-green);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-hover) 100%);
   color: var(--dark-bg);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   transition: all 0.3s ease;
-  min-width: 120px;
+  min-width: 140px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
 }
 
 button:hover {
-  background: #00e677;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+  background: linear-gradient(135deg, var(--primary-green-hover) 0%, var(--primary-green) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
 }
 
 button:active {
   transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 255, 136, 0.3);
 }
 
 .transactions {
   list-style: none;
   padding: 0;
+  margin-top: var(--spacing-md);
 }
 
 .transactions li {
   background: var(--dark-bg);
-  margin: 0.5rem 0;
-  padding: 1rem;
+  margin: var(--spacing-xs) 0;
+  padding: var(--spacing-md);
   border-left: 4px solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .transaction-info {
@@ -237,34 +327,43 @@ button:active {
 .category-badge {
   background: var(--card-bg);
   color: var(--text-primary);
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
   border: 1px solid var(--border-color);
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .description {
   color: var(--text-primary);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .transaction-date {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .transaction-amount {
   color: var(--text-primary);
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .transactions li:hover {
   background: var(--hover-bg);
-  transform: translateX(4px);
+  transform: translateX(6px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-color: var(--border-color);
 }
 
 .transactions li.income {
@@ -280,35 +379,59 @@ button:active {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  min-width: 30px;
+  min-width: 32px;
   padding: 0;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
 }
 
 .transactions li button:hover {
   background: #ff3742;
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.5);
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .main-layout {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .left-column, .right-column {
+    flex: none;
+  }
+}
+
+@media (max-width: 768px) {
   body {
-    padding: 1rem;
+    padding: var(--spacing-sm);
   }
   
   .container {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
+    max-width: 100%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .balance span {
+    font-size: 1.8rem;
   }
   
   form {
     flex-direction: column;
+    gap: var(--spacing-sm);
   }
   
   input, select, button {
@@ -322,28 +445,46 @@ button:active {
   .transaction-info {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
   }
   
   .transaction-main {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
   }
   
   .transaction-details {
     align-items: flex-start;
-    margin-top: 0.5rem;
+    margin-top: var(--spacing-xs);
   }
   
   .summary {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     text-align: center;
   }
   
   .controls {
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .balance span {
+    font-size: 1.6rem;
+  }
+  
+  .transaction-amount {
+    font-size: 1.1rem;
   }
 }
