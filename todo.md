@@ -11,8 +11,8 @@
 
 ### 2. Add Date/Time Stamps
 - [x] Add date field to transaction form
-- [ ] Store timestamp with each transaction
-- [ ] Display date in transaction list
+- [x] Store timestamp with each transaction
+- [x] Display date in transaction list
 - [ ] Add date-based sorting and filtering
 
 ### 3. Improve Visual Feedback

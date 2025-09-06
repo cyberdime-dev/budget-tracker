@@ -48,6 +48,42 @@ function getCurrentDate() {
   return `${year}-${month}-${day}`;
 }
 
+// Function to ensure all transactions have timestamps (for backward compatibility)
+function ensureTimestamps() {
+  transactions.forEach(transaction => {
+    if (!transaction.timestamp) {
+      // If no timestamp exists, create one based on the date
+      const transactionDate = new Date(transaction.date);
+      transaction.timestamp = transactionDate.toISOString();
+    }
+  });
+}
+
+// Function to format date for display
+function formatDateForDisplay(dateString) {
+  const date = new Date(dateString);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  
+  // Reset time to compare only dates
+  const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const yesterdayOnly = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate());
+  
+  if (dateOnly.getTime() === todayOnly.getTime()) {
+    return 'Today';
+  } else if (dateOnly.getTime() === yesterdayOnly.getTime()) {
+    return 'Yesterday';
+  } else {
+    return date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric',
+      year: date.getFullYear() !== today.getFullYear() ? 'numeric' : undefined
+    });
+  }
+}
+
 // Function to toggle category dropdowns based on amount
 function toggleCategoryDropdowns() {
   const amountValue = parseFloat(amount.value);
@@ -84,6 +120,7 @@ function updateDOM() {
     
     // Get category display text with emoji
     const categoryDisplay = getCategoryDisplay(trans.category);
+    const formattedDate = formatDateForDisplay(trans.date);
     
     li.innerHTML = `
       <div class="transaction-info">
@@ -91,7 +128,10 @@ function updateDOM() {
           <span class="category-badge">${categoryDisplay}</span>
           <span class="description">${trans.description}</span>
         </div>
-        <div class="transaction-amount">${sign}$${Math.abs(trans.amount).toFixed(2)}</div>
+        <div class="transaction-details">
+          <div class="transaction-date">${formattedDate}</div>
+          <div class="transaction-amount">${sign}$${Math.abs(trans.amount).toFixed(2)}</div>
+        </div>
       </div>
       <button onclick="removeTransaction(${index})">x</button>
     `;
@@ -132,6 +172,7 @@ form.addEventListener('submit', (e) => {
     description: description.value,
     amount: +amount.value,
     date: date.value,
+    timestamp: new Date().toISOString(),
     category: selectedCategory
   });
 
@@ -149,6 +190,9 @@ function removeTransaction(index) {
   transactions.splice(index, 1);
   updateDOM();
 }
+
+// Ensure all existing transactions have timestamps
+ensureTimestamps();
 
 // Initialize date field with today's date
 date.value = getCurrentDate();
