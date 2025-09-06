@@ -42,7 +42,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/budget-tracker.git
+   git clone https://github.com/cyberdime-dev/budget-tracker.git
    cd budget-tracker
    ```
 
@@ -130,7 +130,7 @@ Contributions are welcome! Here's how you can help:
 ### Development Setup
 ```bash
 # Clone and navigate to the project
-git clone https://github.com/yourusername/budget-tracker.git
+git clone https://github.com/cyberdime-dev/budget-tracker.git
 cd budget-tracker
 
 # Open in your preferred editor
@@ -152,7 +152,7 @@ python -m http.server 8000
 
 ## 🐛 Known Issues
 
-- None currently! If you find any, please [open an issue](https://github.com/yourusername/budget-tracker/issues).
+- None currently! If you find any, please [open an issue](https://github.com/cyberdime-dev/budget-tracker/issues).
 
 ## 📄 License
 
@@ -168,9 +168,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help:
 
-- 📧 **Email**: [your-email@example.com](mailto:your-email@example.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/budget-tracker/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/budget-tracker/discussions)
+- 📧 **Email**: [info@cyberdime.io](mailto:info@cyberdime.io)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/cyberdime-dev/budget-tracker/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/cyberdime-dev/budget-tracker/discussions)
 
 ---
 
