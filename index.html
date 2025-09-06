@@ -20,6 +20,31 @@
       <div>Expenses: <span id="expenses">-$0.00</span></div>
     </div>
 
+    <div class="controls">
+      <div class="sort-controls">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="date-desc">Date (Newest First)</option>
+          <option value="date-asc">Date (Oldest First)</option>
+          <option value="amount-desc">Amount (Highest First)</option>
+          <option value="amount-asc">Amount (Lowest First)</option>
+          <option value="category">Category</option>
+        </select>
+      </div>
+      
+      <div class="filter-controls">
+        <label for="filter-select">Filter:</label>
+        <select id="filter-select">
+          <option value="all">All Transactions</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="income">Income Only</option>
+          <option value="expenses">Expenses Only</option>
+        </select>
+      </div>
+    </div>
+
     <form id="transaction-form">
       <input type="text" id="description" placeholder="Description" required />
       <input type="number" id="amount" placeholder="Amount (+/-)" required />

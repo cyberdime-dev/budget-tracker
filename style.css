@@ -59,6 +59,46 @@ h1 {
   padding: 1rem;
 }
 
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--dark-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.sort-controls, .filter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.controls label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.controls select {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controls select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+}
+
 .summary div {
   color: var(--text-secondary);
   font-weight: 500;
@@ -300,5 +340,10 @@ button:active {
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

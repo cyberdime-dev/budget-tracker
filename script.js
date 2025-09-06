@@ -10,6 +10,8 @@ const amount = document.getElementById('amount');
 const date = document.getElementById('date');
 const incomeCategory = document.getElementById('income-category');
 const expenseCategory = document.getElementById('expense-category');
+const sortSelect = document.getElementById('sort-select');
+const filterSelect = document.getElementById('filter-select');
 
 // Category display mapping
 const categoryMap = {
@@ -110,10 +112,78 @@ function toggleCategoryDropdowns() {
 // Add event listener to amount input
 amount.addEventListener('input', toggleCategoryDropdowns);
 
+// Add event listeners for sorting and filtering
+sortSelect.addEventListener('change', updateDOM);
+filterSelect.addEventListener('change', updateDOM);
+
+// Function to sort transactions
+function sortTransactions(transactions, sortBy) {
+  const sorted = [...transactions];
+  
+  switch (sortBy) {
+    case 'date-desc':
+      return sorted.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    case 'date-asc':
+      return sorted.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    case 'amount-desc':
+      return sorted.sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
+    case 'amount-asc':
+      return sorted.sort((a, b) => Math.abs(a.amount) - Math.abs(b.amount));
+    case 'category':
+      return sorted.sort((a, b) => a.category.localeCompare(b.category));
+    default:
+      return sorted;
+  }
+}
+
+// Function to filter transactions
+function filterTransactions(transactions, filterBy) {
+  const today = new Date();
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay());
+  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  
+  switch (filterBy) {
+    case 'today':
+      return transactions.filter(trans => {
+        const transDate = new Date(trans.date);
+        return transDate >= startOfToday;
+      });
+    case 'week':
+      return transactions.filter(trans => {
+        const transDate = new Date(trans.date);
+        return transDate >= startOfWeek;
+      });
+    case 'month':
+      return transactions.filter(trans => {
+        const transDate = new Date(trans.date);
+        return transDate >= startOfMonth;
+      });
+    case 'income':
+      return transactions.filter(trans => trans.amount > 0);
+    case 'expenses':
+      return transactions.filter(trans => trans.amount < 0);
+    case 'all':
+    default:
+      return transactions;
+  }
+}
+
 function updateDOM() {
   transactionList.innerHTML = '';
 
-  transactions.forEach((trans, index) => {
+  // Get current sort and filter values
+  const sortBy = sortSelect.value;
+  const filterBy = filterSelect.value;
+  
+  // Apply filtering and sorting
+  const filteredTransactions = filterTransactions(transactions, filterBy);
+  const sortedTransactions = sortTransactions(filteredTransactions, sortBy);
+
+  sortedTransactions.forEach((trans, index) => {
+    // Find the original index for the remove function
+    const originalIndex = transactions.findIndex(t => t === trans);
     const sign = trans.amount < 0 ? '-' : '+';
     const li = document.createElement('li');
     li.classList.add(trans.amount < 0 ? 'expense' : 'income');
@@ -133,7 +203,7 @@ function updateDOM() {
           <div class="transaction-amount">${sign}$${Math.abs(trans.amount).toFixed(2)}</div>
         </div>
       </div>
-      <button onclick="removeTransaction(${index})">x</button>
+      <button onclick="removeTransaction(${originalIndex})">x</button>
     `;
     transactionList.appendChild(li);
   });

@@ -13,7 +13,7 @@
 - [x] Add date field to transaction form
 - [x] Store timestamp with each transaction
 - [x] Display date in transaction list
-- [ ] Add date-based sorting and filtering
+- [x] Add date-based sorting and filtering
 
 ### 3. Improve Visual Feedback
 - [ ] Add success/error messages for user actions
